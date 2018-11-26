@@ -1,5 +1,6 @@
 import cv2
 import tensorflow as tf
+import numpy as np
 
 CATEGORIES = ["Dogs", "Cats", "Humans"]
 
@@ -13,17 +14,17 @@ def prepare(filepath):
 model = tf.keras.models.load_model("CatsVDogs.model")
 
 
-prediction = model.predict([prepare('dog.jpg')])
-print(CATEGORIES[int(prediction[0][0])])
+prediction = model.predict([prepare('dog3.jpg')])
+print(CATEGORIES[np.argmax(prediction[0])])
 
 ###############################################
-prediction = model.predict([prepare('cat.jpg')])
-print(CATEGORIES[int(prediction[0][0])])
+prediction = model.predict([prepare('cat2.jpeg')])
+print(CATEGORIES[np.argmax(prediction[0])])
 
 ##############################################
 
-prediction = model.predict([prepare('human.jpg')])
-print(CATEGORIES[int(prediction[0][0])])
+prediction = model.predict([prepare('dog2.jpeg')])
+print(CATEGORIES[np.argmax(prediction[0])])
 
 
 f = open("save.txt","w+")
